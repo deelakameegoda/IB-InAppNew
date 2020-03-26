@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.interblocks.imobile.api.inapp.service.user;
 
 import com.interblocks.imobile.api.inapp.model.*;
@@ -25,11 +20,11 @@ public class UserManagementApiServiceImpl implements UserManagementApiService {
 
     @Override
     public ResponseEntity<UserLoginResponse> login(ExternalUserLogin loginUserRequest) {
-        log.info("login API Method Inoked.");
+        log.info("login API Method Invoked.");
 
         UserLoginResponse loginResponse = inAppUserService.postValidateUserResponse(loginUserRequest);
 
-        log.info("login API Method Response recived from Bo.");
+        log.info("login API Method Response received from Bo.");
 
         if (loginResponse.getLoginStatusCode().equals("IB200")) {
             return ResponseEntity.status(200).body(loginResponse);
@@ -41,11 +36,11 @@ public class UserManagementApiServiceImpl implements UserManagementApiService {
     @Override
     public ResponseEntity<CustomerProfile> edit(CustomerProfileEditRequest customerProfileEditRequest) {
 
-        log.info("Edit wallet API Method Inoked.");
+        log.info("Edit wallet API Method Invoked.");
 
         CustomerProfile loginResponse = inAppUserService.postEditExternalWalletUser(customerProfileEditRequest);
 
-        log.info("Edit wallet API Method Response recived from Bo.");
+        log.info("Edit wallet API Method Response received from Bo.");
 
         if (loginResponse.getStatusCode().equals("IB200")) {
             return ResponseEntity.status(200).body(loginResponse);
@@ -57,11 +52,11 @@ public class UserManagementApiServiceImpl implements UserManagementApiService {
     @Override
     public ResponseEntity<CustomerProfile> list(ListWalletRequest listWalletRequest) {
 
-        log.info("List wallet API Method Inoked.");
+        log.info("List wallet API Method Invoked.");
 
         CustomerProfile loginResponse = inAppUserService.postListExternalWalletUser(listWalletRequest);
 
-        log.info("List wallet API Method Response recived from Bo.");
+        log.info("List wallet API Method Response received from Bo.");
 
         if (loginResponse.getStatusCode().equals("IB200")) {
             return ResponseEntity.status(200).body(loginResponse);
