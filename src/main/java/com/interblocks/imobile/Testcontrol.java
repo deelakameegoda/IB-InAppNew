@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(path = "/test")
 public class Testcontrol {
-    @RequestMapping(method = RequestMethod.GET,path = "/t")
-    public String test(){
+    @RequestMapping(value = "/t", method = RequestMethod.GET)
+    public String test() {
         return "pp";
     }
 }
