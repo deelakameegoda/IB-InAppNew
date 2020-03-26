@@ -12,6 +12,7 @@ import com.interblocks.imobile.api.inapp.service.user.UserManagementApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -32,6 +33,12 @@ public class UserManagementApi {
     @Produces({"application/json"})
     public Response postLogin(ExternalUserLogin loginUserRequest) {
         return delegate.login(loginUserRequest);
+    }
+
+    @GET
+    @Path("/t")
+    public String test(){
+        return "puka";
     }
 
     @POST

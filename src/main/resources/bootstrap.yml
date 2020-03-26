@@ -8,7 +8,7 @@ spring:
 #   uri: ${CONFIG_DEFAULT_ZONE_URL:http://192.168.1.200:8761/config}
 
  profiles:
-  active: ${ACTIVE_PROFILE:dev},${ACTIVE_BENEFIT_PROFILE:benefit_test},i_card_prod,i_transaction_prod,i_admin_prod,production,qr_proprietary,ipay_prod,i_pin_prod
+  active: ${ACTIVE_PROFILE:dev},${ACTIVE_BENEFIT_PROFILE:benefit_test},i_card_prod,i_transaction_prod,i_admin_prod,production,qr_proprietary,ipay_prod,i_pin_prod,i_admin_rest_client_util_prod
 
  thymeleaf:
   cache: false
