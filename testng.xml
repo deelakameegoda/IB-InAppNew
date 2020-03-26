@@ -1,2 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd"><suite name="All Test Suite"><test verbose="2" preserve-order="true" name="C:/Users/Deelu/Documents/inapp"><classes/></test></suite>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="C:/Users/Deelu/Documents/inapp">
+        <classes>
+            <class name="com.interblocks.imobile.api.inapp.service.card.CardManagementImplTest">
+                <methods>
+                    <include name="testAdd"/>
+                    <include name="testAdd_FailResponse"/>
+                    <include name="testList"/>
+                    <include name="testList_FailResponse"/>
+                    <include name="testListAll"/>
+                    <include name="testListAll_FailResponse"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

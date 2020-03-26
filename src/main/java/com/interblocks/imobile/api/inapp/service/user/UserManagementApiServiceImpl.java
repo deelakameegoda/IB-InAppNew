@@ -16,18 +16,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserManagementApiServiceImpl implements UserManagementApiService {
 
-    private final InAppUserService objUserManagementBo;
+    private final InAppUserService inAppUserService;
 
     @Autowired
-    public UserManagementApiServiceImpl(InAppUserService objUserManagementBo) {
-        this.objUserManagementBo = objUserManagementBo;
+    public UserManagementApiServiceImpl(InAppUserService inAppUserService) {
+        this.inAppUserService = inAppUserService;
     }
 
     @Override
     public ResponseEntity<UserLoginResponse> login(ExternalUserLogin loginUserRequest) {
         log.info("login API Method Inoked.");
 
-        UserLoginResponse loginResponse = objUserManagementBo.postValidateUserResponse(loginUserRequest);
+        UserLoginResponse loginResponse = inAppUserService.postValidateUserResponse(loginUserRequest);
 
         log.info("login API Method Response recived from Bo.");
 
@@ -43,7 +43,7 @@ public class UserManagementApiServiceImpl implements UserManagementApiService {
 
         log.info("Edit wallet API Method Inoked.");
 
-        CustomerProfile loginResponse = objUserManagementBo.postEditExternalWalletUser(customerProfileEditRequest);
+        CustomerProfile loginResponse = inAppUserService.postEditExternalWalletUser(customerProfileEditRequest);
 
         log.info("Edit wallet API Method Response recived from Bo.");
 
@@ -57,17 +57,17 @@ public class UserManagementApiServiceImpl implements UserManagementApiService {
     @Override
     public ResponseEntity<CustomerProfile> list(ListWalletRequest listWalletRequest) {
 
-            log.info("List wallet API Method Inoked.");
+        log.info("List wallet API Method Inoked.");
 
-            CustomerProfile loginResponse = objUserManagementBo.postListExternalWalletUser(listWalletRequest);
+        CustomerProfile loginResponse = inAppUserService.postListExternalWalletUser(listWalletRequest);
 
-            log.info("List wallet API Method Response recived from Bo.");
+        log.info("List wallet API Method Response recived from Bo.");
 
-            if (loginResponse.getStatusCode().equals("IB200")) {
-                return ResponseEntity.status(200).body(loginResponse);
-            } else {
-                return ResponseEntity.status(401).body(loginResponse);
-            }
+        if (loginResponse.getStatusCode().equals("IB200")) {
+            return ResponseEntity.status(200).body(loginResponse);
+        } else {
+            return ResponseEntity.status(401).body(loginResponse);
+        }
     }
 
 }
