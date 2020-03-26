@@ -17,8 +17,8 @@ public class UserManagementApi {
     private final UserManagementApiService userManagementApiService;
 
     @Autowired
-    public UserManagementApi(UserManagementApiService userManagementApiServiceate) {
-        this.userManagementApiService = userManagementApiServiceate;
+    public UserManagementApi(UserManagementApiService userManagementApiService) {
+        this.userManagementApiService = userManagementApiService;
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/login", produces = "application/json")

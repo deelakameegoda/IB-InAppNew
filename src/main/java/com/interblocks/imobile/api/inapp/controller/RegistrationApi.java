@@ -1,35 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.interblocks.imobile.api.inapp.controller;
 
 import com.interblocks.imobile.api.inapp.model.RegisterUserRequest;
+import com.interblocks.imobile.api.inapp.model.RegisterUserResponse;
 import com.interblocks.imobile.api.inapp.service.registration.RegistrationApiService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Response;
-
-/**
- * @author Anusha Ariyathilaka
- */
-@Path("/registration")
-@Service
+@Slf4j
+@RestController
+@RequestMapping(path = "/registration")
 public class RegistrationApi {
 
-    @Autowired
-    RegistrationApiService delegate;
+    private final RegistrationApiService registrationApiService;
 
-    @POST
-    @Path("/register")
-    @Produces({"application/json"})
-    public Response postTransaction(RegisterUserRequest regUserRequest) {
-        return delegate.registerUser(regUserRequest);
+    @Autowired
+    public RegistrationApi(RegistrationApiService registrationApiService) {
+        this.registrationApiService = registrationApiService;
     }
 
+    @RequestMapping(method = RequestMethod.POST, path = "/register", produces = "application/json")
+    public ResponseEntity<RegisterUserResponse> postTransaction(RegisterUserRequest registerUserRequest) {
+        return registrationApiService.registerUser(registerUserRequest);
+    }
 }

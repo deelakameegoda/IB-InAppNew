@@ -14,12 +14,12 @@ import org.springframework.stereotype.Service;
 
 @Log4j2
 @Service
-public class UserManagementImpl implements UserManagementApiService {
+public class UserManagementApiServiceImpl implements UserManagementApiService {
 
     private final InAppUserService objUserManagementBo;
 
     @Autowired
-    public UserManagementImpl(InAppUserService objUserManagementBo) {
+    public UserManagementApiServiceImpl(InAppUserService objUserManagementBo) {
         this.objUserManagementBo = objUserManagementBo;
     }
 

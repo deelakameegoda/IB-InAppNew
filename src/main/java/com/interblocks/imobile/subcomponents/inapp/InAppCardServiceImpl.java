@@ -171,13 +171,13 @@ public class InAppCardServiceImpl implements InAppCardService {
                     cardInsertRespErr.setCardRef("");
                     cardInsertRespErr.setCardType(item.getCardType());
                     cardInsertRespErr.setExepation("Error in card insert.");
-                    cardInsertRespErr.setIsDefault(item.isDefault());
+                    cardInsertRespErr.setDefault(item.isDefault());
                     cardInsertRespErr.setStatusCode("IB603");
                     cardInsertRespErr.setStatusDescription("ERROR");
                     cardInsertRespErr.setFailReason("Error in card insert.");
                     cardInsertRespErr.setMaskedCardNumber(item.getMaskedCardNumber());
                     cardInsertRespErr.setIndex(Integer.toString(index));
-                    cardInsertRespErr.setIsExpired(false);
+                    cardInsertRespErr.setExpired(false);
                     cardInsertRespErr.setCardBin(item.getCardBin());
 
                     cardInsertRespList.add(cardInsertRespErr);
@@ -201,22 +201,22 @@ public class InAppCardServiceImpl implements InAppCardService {
                 cardInsertResp.setCardRef(cardData.getBnkDlAcct().getExtId());
                 cardInsertResp.setCardType(item.getCardType());
                 cardInsertResp.setExepation("");
-                cardInsertResp.setIsDefault(item.isDefault());
+                cardInsertResp.setDefault(item.isDefault());
                 cardInsertResp.setStatusCode("IB200");
                 cardInsertResp.setStatusDescription("SUCCESS");
                 cardInsertResp.setFailReason("");
                 cardInsertResp.setMaskedCardNumber(item.getMaskedCardNumber());
                 cardInsertResp.setIndex(cardData.getBnkDlAcct().getDe03());
-                cardInsertResp.setIsExpired(isExpired(cardData.getBnkDlAcct().getExpYear(), cardData.getBnkDlAcct().getExpMnth()));
+                cardInsertResp.setExpired(isExpired(cardData.getBnkDlAcct().getExpYear(), cardData.getBnkDlAcct().getExpMnth()));
                 cardInsertResp.setCardHolderName(item.getCardHolderName());
                 cardInsertResp.setCardBin(cardData.getBnkDlAcct().getCrdBin());
 
                 if (isCardNeedToBeActiveBeforeUse) {
                     cardInsertResp.setActivationOTP(cardData.getBnkDlAcct().getDe01());
-                    cardInsertResp.setIsActive(false);
+                    cardInsertResp.setActive(false);
                 } else {
                     cardInsertResp.setActivationOTP("");
-                    cardInsertResp.setIsActive(true);
+                    cardInsertResp.setActive(true);
                 }
 
                 cardInsertRespList.add(cardInsertResp);
@@ -741,13 +741,13 @@ public class InAppCardServiceImpl implements InAppCardService {
                     cardInsertRespErr.setCardRef("");
                     cardInsertRespErr.setCardType(card.getCardType());
                     cardInsertRespErr.setExepation("Error in card insert.");
-                    cardInsertRespErr.setIsDefault(card.isDefault());
+                    cardInsertRespErr.setDefault(card.isDefault());
                     cardInsertRespErr.setStatusCode("IB603");
                     cardInsertRespErr.setStatusDescription("ERROR");
                     cardInsertRespErr.setFailReason("Error in card insert.");
                     cardInsertRespErr.setMaskedCardNumber(card.getMaskedCardNumber());
                     cardInsertRespErr.setIndex(Integer.toString(index));
-                    cardInsertRespErr.setIsExpired(false);
+                    cardInsertRespErr.setExpired(false);
                     cardInsertRespErr.setCardBin(card.getCardBin());
 
                     cardInsertRespList.add(cardInsertRespErr);
@@ -770,18 +770,18 @@ public class InAppCardServiceImpl implements InAppCardService {
                 cardInsertResp.setCardRef(cardData.getBnkDlAcct().getExtId());
                 cardInsertResp.setCardType(card.getCardType());
                 cardInsertResp.setExepation("");
-                cardInsertResp.setIsDefault(card.isDefault());
+                cardInsertResp.setDefault(card.isDefault());
                 cardInsertResp.setStatusCode("IB200");
                 cardInsertResp.setStatusDescription("SUCCESS");
                 cardInsertResp.setFailReason("");
                 cardInsertResp.setMaskedCardNumber(card.getMaskedCardNumber());
                 cardInsertResp.setIndex(cardData.getBnkDlAcct().getDe03());
-                cardInsertResp.setIsExpired(isExpired(cardData.getBnkDlAcct().getExpYear(), cardData.getBnkDlAcct().getExpMnth()));
+                cardInsertResp.setExpired(isExpired(cardData.getBnkDlAcct().getExpYear(), cardData.getBnkDlAcct().getExpMnth()));
                 cardInsertResp.setCardHolderName(card.getCardHolderName());
                 cardInsertResp.setCardBin(cardData.getBnkDlAcct().getCrdBin());
 
                 cardInsertResp.setActivationOTP("");
-                cardInsertResp.setIsActive(true);
+                cardInsertResp.setActive(true);
 
                 cardInsertRespList.add(cardInsertResp);
             }
@@ -906,8 +906,8 @@ public class InAppCardServiceImpl implements InAppCardService {
                 cardDelResp.setCardNo(cardToDelete.getAcctNo());
                 cardDelResp.setCardRef(deleteCardRequest.getCardRef());
                 cardDelResp.setCardType(cardToDelete.getAcctTyp().startsWith("OCP") ? cardToDelete.getAcctTyp().split("-")[1] : cardToDelete.getAcctTyp());
-                cardDelResp.setIsDefault(cardToDelete.getBnkDlAcct().getIsDef().equals("Y"));
-                cardDelResp.setIsActive(cardToDelete.getBnkDlAcct().getDe02().equals("Y"));
+                cardDelResp.setDefault(cardToDelete.getBnkDlAcct().getIsDef().equals("Y"));
+                cardDelResp.setActive(cardToDelete.getBnkDlAcct().getDe02().equals("Y"));
                 cardDelResp.setMaskedCardNumber(cardToDelete.getBnkDlAcct().getDe04());
                 cardDelResp.setCardBin(cardToDelete.getBnkDlAcct().getCrdBin());
                 cardDelResp.setStatusCode("IB200");
@@ -929,8 +929,8 @@ public class InAppCardServiceImpl implements InAppCardService {
                 cardDelResp.setCardNo(cardToDelete.getAcctNo());
                 cardDelResp.setCardRef(deleteCardRequest.getCardRef());
                 cardDelResp.setCardType(cardToDelete.getAcctTyp().startsWith("OCP") ? cardToDelete.getAcctTyp().split("-")[1] : cardToDelete.getAcctTyp());
-                cardDelResp.setIsDefault(cardToDelete.getBnkDlAcct().getIsDef().equals("Y"));
-                cardDelResp.setIsActive(cardToDelete.getBnkDlAcct().getDe02().equals("Y"));
+                cardDelResp.setDefault(cardToDelete.getBnkDlAcct().getIsDef().equals("Y"));
+                cardDelResp.setActive(cardToDelete.getBnkDlAcct().getDe02().equals("Y"));
                 cardDelResp.setCardBin(cardToDelete.getBnkDlAcct().getCrdBin());
                 cardDelResp.setStatusCode("IB603");
                 cardDelResp.setStatusDescription("SYS_ERROR");
@@ -1056,8 +1056,8 @@ public class InAppCardServiceImpl implements InAppCardService {
                 cardActivateResp.setCardRef(activateCardRequest.getCardRef());
                 if (cardToActive != null) {
                     cardActivateResp.setCardType(cardToActive.getAcctTyp().startsWith("OCP") ? cardToActive.getAcctTyp().split("-")[1] : cardToActive.getAcctTyp());
-                    cardActivateResp.setIsDefault(cardToActive.getBnkDlAcct().getIsDef().equals("Y"));
-                    cardActivateResp.setIsActive(cardToActive.getBnkDlAcct().getDe02().equals("Y"));
+                    cardActivateResp.setDefault(cardToActive.getBnkDlAcct().getIsDef().equals("Y"));
+                    cardActivateResp.setActive(cardToActive.getBnkDlAcct().getDe02().equals("Y"));
                     cardActivateResp.setCardBin(cardToActive.getBnkDlAcct().getCrdBin());
                 }
 
@@ -1093,8 +1093,8 @@ public class InAppCardServiceImpl implements InAppCardService {
                         cardActivateResp.setCardNo(cardToActive.getAcctNo());
                         cardActivateResp.setCardRef(activateCardRequest.getCardRef());
                         cardActivateResp.setCardType(cardToActive.getAcctTyp().startsWith("OCP") ? cardToActive.getAcctTyp().split("-")[1] : cardToActive.getAcctTyp());
-                        cardActivateResp.setIsDefault(cardToActive.getBnkDlAcct().getIsDef().equals("Y"));
-                        cardActivateResp.setIsActive(cardToActive.getBnkDlAcct().getDe02().equals("Y"));
+                        cardActivateResp.setDefault(cardToActive.getBnkDlAcct().getIsDef().equals("Y"));
+                        cardActivateResp.setActive(cardToActive.getBnkDlAcct().getDe02().equals("Y"));
                         cardActivateResp.setCardBin(cardToActive.getBnkDlAcct().getCrdBin());
 
                         cardActivateResp.setStatusCode("IB200");
@@ -1115,8 +1115,8 @@ public class InAppCardServiceImpl implements InAppCardService {
                         cardActivateResp.setCardNo(cardToActive.getAcctNo());
                         cardActivateResp.setCardRef(activateCardRequest.getCardRef());
                         cardActivateResp.setCardType(cardToActive.getAcctTyp().startsWith("OCP") ? cardToActive.getAcctTyp().split("-")[1] : cardToActive.getAcctTyp());
-                        cardActivateResp.setIsDefault(cardToActive.getBnkDlAcct().getIsDef().equals("Y"));
-                        cardActivateResp.setIsActive(cardToActive.getBnkDlAcct().getDe02().equals("Y"));
+                        cardActivateResp.setDefault(cardToActive.getBnkDlAcct().getIsDef().equals("Y"));
+                        cardActivateResp.setActive(cardToActive.getBnkDlAcct().getDe02().equals("Y"));
                         cardActivateResp.setCardBin(cardToActive.getBnkDlAcct().getCrdBin());
                         cardActivateResp.setStatusCode("IB603");
                         cardActivateResp.setStatusDescription("SYS_ERROR");
@@ -1135,8 +1135,8 @@ public class InAppCardServiceImpl implements InAppCardService {
                     cardActivateResp.setCardNo(cardToActive.getAcctNo());
                     cardActivateResp.setCardRef(activateCardRequest.getCardRef());
                     cardActivateResp.setCardType(cardToActive.getAcctTyp().startsWith("OCP") ? cardToActive.getAcctTyp().split("-")[1] : cardToActive.getAcctTyp());
-                    cardActivateResp.setIsDefault(cardToActive.getBnkDlAcct().getIsDef().equals("Y"));
-                    cardActivateResp.setIsActive(cardToActive.getBnkDlAcct().getDe02().equals("Y"));
+                    cardActivateResp.setDefault(cardToActive.getBnkDlAcct().getIsDef().equals("Y"));
+                    cardActivateResp.setActive(cardToActive.getBnkDlAcct().getDe02().equals("Y"));
                     cardActivateResp.setCardBin(cardToActive.getBnkDlAcct().getCrdBin());
 
                     cardActivateResp.setStatusCode("IB400");
@@ -1157,8 +1157,8 @@ public class InAppCardServiceImpl implements InAppCardService {
                 cardActivateResp.setCardNo(cardToActive.getAcctNo());
                 cardActivateResp.setCardRef(activateCardRequest.getCardRef());
                 cardActivateResp.setCardType(cardToActive.getAcctTyp().startsWith("OCP") ? cardToActive.getAcctTyp().split("-")[1] : cardToActive.getAcctTyp());
-                cardActivateResp.setIsDefault(cardToActive.getBnkDlAcct().getIsDef().equals("Y"));
-                cardActivateResp.setIsActive(cardToActive.getBnkDlAcct().getDe02().equals("Y"));
+                cardActivateResp.setDefault(cardToActive.getBnkDlAcct().getIsDef().equals("Y"));
+                cardActivateResp.setActive(cardToActive.getBnkDlAcct().getDe02().equals("Y"));
                 cardActivateResp.setCardBin(cardToActive.getBnkDlAcct().getCrdBin());
 
                 cardActivateResp.setStatusCode("IB400");

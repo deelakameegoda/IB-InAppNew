@@ -1,19 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.interblocks.imobile.api.inapp.service.registration;
 
 import com.interblocks.imobile.api.inapp.model.RegisterUserRequest;
+import com.interblocks.imobile.api.inapp.model.RegisterUserResponse;
+import org.springframework.http.ResponseEntity;
 
-import javax.ws.rs.NotFoundException;
-import javax.ws.rs.core.Response;
+public interface RegistrationApiService {
 
-/**
- * @author Anusha Ariyathilaka
- */
-public abstract class RegistrationApiService {
-    public abstract Response registerUser(RegisterUserRequest regUserRequest)
-            throws NotFoundException;
+    ResponseEntity<RegisterUserResponse> registerUser(RegisterUserRequest registerUserRequest);
 }

@@ -1,13 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.interblocks.imobile.api.inapp.model;
 
-/**
- * @author Anusha Ariyathilaka
- */
 public class RegisterUserRequest {
 
     private String userId;

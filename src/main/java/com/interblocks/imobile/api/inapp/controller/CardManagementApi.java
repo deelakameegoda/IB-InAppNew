@@ -1,81 +1,68 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.interblocks.imobile.api.inapp.controller;
 
 import com.interblocks.imobile.api.inapp.model.*;
 import com.interblocks.imobile.api.inapp.service.card.CardManagementApiService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Response;
-
-@Path("/instrument")
-@Service
+@Slf4j
+@RestController
+@RequestMapping(path = "/instrument")
 public class CardManagementApi {
 
+    private final CardManagementApiService cardManagementApiService;
+
     @Autowired
-    CardManagementApiService delegate;
-
-    @POST
-    @Path("/add")
-    @Produces({"application/json"})
-    public Response postTransaction(AddCardsRequest cardInsertRequest) {
-        return delegate.add(cardInsertRequest);
+    public CardManagementApi(CardManagementApiService cardManagementApiService) {
+        this.cardManagementApiService = cardManagementApiService;
     }
 
-    @POST
-    @Path("/list")
-    @Produces({"application/json"})
-    public Response list(ListExternalCardRequest listExternalCardRequest) {
-        return delegate.list(listExternalCardRequest);
+    @RequestMapping(method = RequestMethod.POST, path = "/add", produces = "application/json")
+    public ResponseEntity<AddCardsResponse> postTransaction(AddCardsRequest cardInsertRequest) {
+        return cardManagementApiService.add(cardInsertRequest);
     }
 
-    @POST
-    @Path("/list-all")
-    @Produces({"application/json"})
-    public Response listAll(ListExternalCardRequest listExternalCardRequest) {
-        return delegate.listAll(listExternalCardRequest);
+    @RequestMapping(method = RequestMethod.GET, path = "/t")
+    public String postTransaction() {
+        return "puka";
     }
 
-
-    @POST
-    @Path("/edit")
-    @Produces({"application/json"})
-    public Response edit(EditExternalCardsRequest editExternalCardsRequest) {
-        return delegate.edit(editExternalCardsRequest);
+    @RequestMapping(method = RequestMethod.POST, path = "/list", produces = "application/json")
+    public ResponseEntity<ListExternalCardResponse> list(ListExternalCardRequest listExternalCardRequest) {
+        return cardManagementApiService.list(listExternalCardRequest);
     }
 
-    @POST
-    @Path("/delete")
-    @Produces({"application/json"})
-    public Response delete(DeleteExternalCardRequest deleteCardRequest) {
-        return delegate.delete(deleteCardRequest);
+    @RequestMapping(method = RequestMethod.POST, path = "/list-all", produces = "application/json")
+    public ResponseEntity<ListExternalCardResponse> listAll(ListExternalCardRequest listExternalCardRequest) {
+        return cardManagementApiService.listAll(listExternalCardRequest);
     }
 
-    @POST
-    @Path("/activate")
-    @Produces({"application/json"})
-    public Response activate(ActivateExternalCardRequest activateCardRequest) {
-        return delegate.activate(activateCardRequest);
+    @RequestMapping(method = RequestMethod.POST, path = "/edit", produces = "application/json")
+    public ResponseEntity<EditExternalCardsResponse> edit(EditExternalCardsRequest editExternalCardsRequest) {
+        return cardManagementApiService.edit(editExternalCardsRequest);
     }
 
-    @POST
-    @Path("/isused")
-    @Produces({"application/json"})
-    public Response isInUse(CheckCardInUseRequest checkCardInUseRequest) {
-        return delegate.isInUse(checkCardInUseRequest);
+    @RequestMapping(method = RequestMethod.POST, path = "/delete", produces = "application/json")
+    public ResponseEntity<DeleteExternalCardResponse> delete(DeleteExternalCardRequest deleteCardRequest) {
+        return cardManagementApiService.delete(deleteCardRequest);
     }
 
-    @POST
-    @Path("/balance-list")
-    @Produces({"application/json"})
-    public Response balanceList(ListExternalCardRequest balanceListRequest) {
-        return delegate.balanceList(balanceListRequest);
+    @RequestMapping(method = RequestMethod.POST, path = "/activate", produces = "application/json")
+    public ResponseEntity<ActivateExternalCardResponse> activate(ActivateExternalCardRequest activateCardRequest) {
+        return cardManagementApiService.activate(activateCardRequest);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, path = "/isused", produces = "application/json")
+    public ResponseEntity<CheckCardInUseResponse> isInUse(CheckCardInUseRequest checkCardInUseRequest) {
+        return cardManagementApiService.isInUse(checkCardInUseRequest);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, path = "/balance-list", produces = "application/json")
+    public ResponseEntity<BalanceList> balanceList(ListExternalCardRequest balanceListRequest) {
+        return cardManagementApiService.balanceList(balanceListRequest);
     }
 }
