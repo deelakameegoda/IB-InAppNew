@@ -26,11 +26,6 @@ public class CardManagementApi {
         return cardManagementApiService.add(cardInsertRequest);
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/t")
-    public String postTransaction() {
-        return "puka";
-    }
-
     @RequestMapping(method = RequestMethod.POST, path = "/list", produces = "application/json")
     public ResponseEntity<ListExternalCardResponse> list(ListExternalCardRequest listExternalCardRequest) {
         return cardManagementApiService.list(listExternalCardRequest);
