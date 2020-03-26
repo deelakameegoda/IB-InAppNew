@@ -1,0 +1,41 @@
+spring:
+ cloud:
+  config:
+   uri: ${CONFIG_DEFAULT_ZONE_URL:http://localhost:8761/config}
+#spring:
+# cloud:
+#  config:
+#   uri: ${CONFIG_DEFAULT_ZONE_URL:http://192.168.1.200:8761/config}
+
+ profiles:
+  active: ${ACTIVE_PROFILE:dev},${ACTIVE_BENEFIT_PROFILE:benefit_test},i_card_prod,i_transaction_prod,i_admin_prod,production,qr_proprietary,ipay_prod,i_pin_prod
+
+ thymeleaf:
+  cache: false
+
+ application:
+  name: api-inapp
+
+ mvc:
+  view:
+    prefix: /WEB-INF/jsp/
+    suffix: .jsp
+
+server:
+  port: 8782
+
+default:
+ module_id: WAP
+
+springfox:
+  documentation:
+    swagger:
+      v2:
+        path: /api-docs
+
+banner:
+  charset: US-ASCII
+
+logging:
+  level: debug
+

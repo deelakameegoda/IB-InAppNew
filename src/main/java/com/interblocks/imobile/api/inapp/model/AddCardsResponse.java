@@ -1,0 +1,106 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.interblocks.imobile.api.inapp.model;
+
+import java.util.List;
+
+/**
+ * @author Anusha Ariyathilaka @ Interblocks Ltd.
+ */
+public class AddCardsResponse {
+
+    private String walletId;
+    private List<CardManagementResponse> cardManagementResponseList;
+    private String statusCode;
+    private String extErrorCode;
+    private String statusDescription;
+    private String failReason;
+
+    /**
+     * @return the walletId
+     */
+    public String getWalletId() {
+        return walletId;
+    }
+
+    /**
+     * @param walletId the walletId to set
+     */
+    public void setWalletId(String walletId) {
+        this.walletId = walletId;
+    }
+
+    /**
+     * @return the cardManagementResponseList
+     */
+    public List<CardManagementResponse> getCardManagementResponseList() {
+        return cardManagementResponseList;
+    }
+
+    /**
+     * @param cardManagementResponseList the cardManagementResponseList to set
+     */
+    public void setCardManagementResponseList(List<CardManagementResponse> cardManagementResponseList) {
+        this.cardManagementResponseList = cardManagementResponseList;
+    }
+
+    /**
+     * @return the statusCode
+     */
+    public String getStatusCode() {
+        return statusCode;
+    }
+
+    /**
+     * @param statusCode the statusCode to set
+     */
+    public void setStatusCode(String statusCode) {
+        this.statusCode = statusCode;
+    }
+
+    /**
+     * @return the extErrorCode
+     */
+    public String getExtErrorCode() {
+        return extErrorCode;
+    }
+
+    /**
+     * @param extErrorCode the extErrorCode to set
+     */
+    public void setExtErrorCode(String extErrorCode) {
+        this.extErrorCode = extErrorCode;
+    }
+
+    /**
+     * @return the statusDescription
+     */
+    public String getStatusDescription() {
+        return statusDescription;
+    }
+
+    /**
+     * @param statusDescription the statusDescription to set
+     */
+    public void setStatusDescription(String statusDescription) {
+        this.statusDescription = statusDescription;
+    }
+
+    /**
+     * @return the failReason
+     */
+    public String getFailReason() {
+        return failReason;
+    }
+
+    /**
+     * @param failReason the failReason to set
+     */
+    public void setFailReason(String failReason) {
+        this.failReason = failReason;
+    }
+
+}
