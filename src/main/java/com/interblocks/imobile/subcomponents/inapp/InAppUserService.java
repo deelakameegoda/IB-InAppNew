@@ -5,7 +5,6 @@ import com.interblocks.iwallet.model.BnkDlUsr;
 
 public interface InAppUserService {
 
-
     UserLoginResponse postValidateUserResponse(ExternalUserLogin User);
 
     BnkDlUsr getExternalUserData(String walletId, String merchantId);

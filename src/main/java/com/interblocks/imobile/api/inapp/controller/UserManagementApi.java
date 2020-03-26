@@ -1,58 +1,39 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.interblocks.imobile.api.inapp.controller;
 
-import com.interblocks.imobile.api.inapp.model.CustomerProfileEditRequest;
-import com.interblocks.imobile.api.inapp.model.ExternalUserLogin;
-import com.interblocks.imobile.api.inapp.model.ListWalletRequest;
+import com.interblocks.imobile.api.inapp.model.*;
 import com.interblocks.imobile.api.inapp.service.user.UserManagementApiService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Response;
-
-/**
- * @author Anusha Ariyathilaka @ Interblocks Ltd.
- */
-@Path("/user")
-@Service
+@Slf4j
+@RestController
+@RequestMapping(path = "/user")
 public class UserManagementApi {
 
+    private final UserManagementApiService userManagementApiService;
+
     @Autowired
-    UserManagementApiService delegate;
-
-    @POST
-    @Path("/login")
-    @Produces({"application/json"})
-    public Response postLogin(ExternalUserLogin loginUserRequest) {
-        return delegate.login(loginUserRequest);
+    public UserManagementApi(UserManagementApiService userManagementApiServiceate) {
+        this.userManagementApiService = userManagementApiServiceate;
     }
 
-    @GET
-    @Path("/t")
-    public String test(){
-        return "puka";
+    @RequestMapping(method = RequestMethod.POST, path = "/login", produces = "application/json")
+    public ResponseEntity<UserLoginResponse> postLogin(ExternalUserLogin loginUserRequest) {
+        return userManagementApiService.login(loginUserRequest);
     }
 
-    @POST
-    @Path("/edit")
-    @Produces({"application/json"})
-    public Response postEditWallet(CustomerProfileEditRequest customerProfileEditRequest) {
-        return delegate.edit(customerProfileEditRequest);
+    @RequestMapping(method = RequestMethod.POST, path = "/edit", produces = "application/json")
+    public ResponseEntity<CustomerProfile> postEditWallet(CustomerProfileEditRequest customerProfileEditRequest) {
+        return userManagementApiService.edit(customerProfileEditRequest);
     }
 
-    @POST
-    @Path("/list")
-    @Produces({"application/json"})
-    public Response postListWallet(ListWalletRequest listWalletRequest) {
-        return delegate.list(listWalletRequest);
+    @RequestMapping(method = RequestMethod.POST, path = "/list", produces = "application/json")
+    public ResponseEntity<CustomerProfile> postListWallet(ListWalletRequest listWalletRequest) {
+        return userManagementApiService.list(listWalletRequest);
     }
 
 }
