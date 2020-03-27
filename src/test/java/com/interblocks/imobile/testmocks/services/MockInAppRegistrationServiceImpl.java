@@ -7,6 +7,16 @@ import com.interblocks.imobile.subcomponents.inapp.InAppRegistrationService;
 public class MockInAppRegistrationServiceImpl implements InAppRegistrationService {
     @Override
     public RegisterUserResponse postInsertExternalWalletUser(RegisterUserRequest oNewWalletUser) {
-        return null;
+        return createRegisterUserResponse(oNewWalletUser);
+    }
+
+    public RegisterUserResponse createRegisterUserResponse(RegisterUserRequest registerUserRequest) {
+        RegisterUserResponse registerUserResponse = new RegisterUserResponse();
+        if (registerUserRequest.getUserId().equals("userId")) {
+            registerUserResponse.setStatusCode("IB000");
+        } else {
+            registerUserResponse.setStatusCode("401");
+        }
+        return registerUserResponse;
     }
 }

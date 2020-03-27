@@ -11,6 +11,32 @@
                     <include name="testList_FailResponse"/>
                     <include name="testListAll"/>
                     <include name="testListAll_FailResponse"/>
+                    <include name="testEdit"/>
+                    <include name="testEdit_FailResponse"/>
+                    <include name="testDelete"/>
+                    <include name="testDelete_FailResponse"/>
+                    <include name="testActivate"/>
+                    <include name="testActivate_FailResponse"/>
+                    <include name="testIsInUse"/>
+                    <include name="testIsInUse_FailResponse"/>
+                    <include name="testBalanceList"/>
+                    <include name="testBalanceList_FailResponse"/>
+                </methods>
+            </class>
+            <class name="com.interblocks.imobile.api.inapp.service.registration.RegistrationImplTest">
+                <methods>
+                    <include name="testRegisterUser"/>
+                    <include name="testRegisterUser_FailResponse"/>
+                </methods>
+            </class>
+            <class name="com.interblocks.imobile.api.inapp.service.user.UserManagementImplTest">
+                <methods>
+                    <include name="testLogin"/>
+                    <include name="testLogin_FailResponse"/>
+                    <include name="testEdit"/>
+                    <include name="testEdit_FailResponse"/>
+                    <include name="testList"/>
+                    <include name="testList_FailResponse"/>
                 </methods>
             </class>
         </classes>

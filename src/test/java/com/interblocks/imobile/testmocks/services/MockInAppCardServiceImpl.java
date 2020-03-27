@@ -30,22 +30,22 @@ public class MockInAppCardServiceImpl implements InAppCardService {
 
     @Override
     public EditExternalCardsResponse postEditCards(EditExternalCardsRequest editCardRequest) {
-        return null;
+        return createEditExternalCardsResponse(editCardRequest);
     }
 
     @Override
     public DeleteExternalCardResponse postDeleteCards(DeleteExternalCardRequest deleteCardRequest) {
-        return null;
+        return createDeleteExternalCardResponse(deleteCardRequest);
     }
 
     @Override
     public ActivateExternalCardResponse postActivateCards(ActivateExternalCardRequest activateCardRequest) {
-        return null;
+        return createActivateExternalCardResponse(activateCardRequest);
     }
 
     @Override
     public CheckCardInUseResponse postCheckTheCardInUse(CheckCardInUseRequest checkCardInUseRequest) {
-        return null;
+        return createCheckCardInUseResponse(checkCardInUseRequest);
     }
 
     @Override
@@ -55,34 +55,82 @@ public class MockInAppCardServiceImpl implements InAppCardService {
 
     @Override
     public BalanceList postGetBalanceList(ListExternalCardRequest balanceListRequest) {
-        return null;
+        return createBalanceList(balanceListRequest);
     }
 
     private AddCardsResponse createAddCardsResponse(AddCardsRequest addCardsRequest) {
         AddCardsResponse addCardsResponse = new AddCardsResponse();
-        if (addCardsRequest!=(null)){
-            if(addCardsRequest.getWalletId().equals("000")){
-                addCardsResponse.setStatusCode("401");
-            }else{
-                addCardsResponse.setStatusCode("IB200");
-            }
-            return addCardsResponse;
-        } else{
-            return null;
+        if (addCardsRequest.getWalletId().equals("000")) {
+            addCardsResponse.setStatusCode("401");
+        } else {
+            addCardsResponse.setStatusCode("IB200");
         }
+        return addCardsResponse;
+
     }
 
     private ListExternalCardResponse createListExternalCardResponse(ListExternalCardRequest listExternalCardRequest) {
         ListExternalCardResponse listExternalCardResponse = new ListExternalCardResponse();
-        if (listExternalCardRequest!=(null)){
-            if(listExternalCardRequest.getWalletId().equals("000")){
-                listExternalCardResponse.setStatusCode("401");
-            }else{
-                listExternalCardResponse.setStatusCode("IB200");
-            }
-            return listExternalCardResponse;
-        } else{
-            return null;
+        if (listExternalCardRequest.getWalletId().equals("000")) {
+            listExternalCardResponse.setStatusCode("401");
+        } else {
+            listExternalCardResponse.setStatusCode("IB200");
         }
+        return listExternalCardResponse;
+
+    }
+
+    private EditExternalCardsResponse createEditExternalCardsResponse(EditExternalCardsRequest editExternalCardsRequest) {
+        EditExternalCardsResponse editExternalCardsResponse = new EditExternalCardsResponse();
+        if (editExternalCardsRequest.getWalletId().equals("000")) {
+            editExternalCardsResponse.setStatusCode("401");
+        } else {
+            editExternalCardsResponse.setStatusCode("IB200");
+        }
+        return editExternalCardsResponse;
+
+    }
+
+    private DeleteExternalCardResponse createDeleteExternalCardResponse(DeleteExternalCardRequest deleteExternalCardRequest) {
+        DeleteExternalCardResponse deleteExternalCardResponse = new DeleteExternalCardResponse();
+        if (deleteExternalCardRequest.getWalletId().equals("000")) {
+            deleteExternalCardResponse.setStatusCode("401");
+        } else {
+            deleteExternalCardResponse.setStatusCode("IB200");
+        }
+        return deleteExternalCardResponse;
+
+    }
+
+    private ActivateExternalCardResponse createActivateExternalCardResponse(ActivateExternalCardRequest activateExternalCardRequest) {
+        ActivateExternalCardResponse activateExternalCardResponse = new ActivateExternalCardResponse();
+        if (activateExternalCardRequest.getWalletId().equals("000")) {
+            activateExternalCardResponse.setStatusCode("401");
+        } else {
+            activateExternalCardResponse.setStatusCode("IB200");
+        }
+        return activateExternalCardResponse;
+
+    }
+
+    private CheckCardInUseResponse createCheckCardInUseResponse(CheckCardInUseRequest checkCardInUseRequest) {
+        CheckCardInUseResponse checkCardInUseResponse = new CheckCardInUseResponse();
+        if (checkCardInUseRequest.getBankCode().equals("000")) {
+            checkCardInUseResponse.setStatusCode("IB200");
+        } else {
+            checkCardInUseResponse.setStatusCode("401");
+        }
+        return checkCardInUseResponse;
+
+    }
+
+    private BalanceList createBalanceList(ListExternalCardRequest listExternalCardRequest) {
+        BalanceList balanceList = new BalanceList();
+        if (listExternalCardRequest.getWalletId().equals("000")) {
+            balanceList.setStatusCode("401");
+        } else {
+            balanceList.setStatusCode("IB200");
+        }
+        return balanceList;
     }
 }
