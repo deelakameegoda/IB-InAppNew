@@ -6,6 +6,7 @@ import com.interblocks.imobile.api.inapp.service.registration.RegistrationApiSer
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +24,7 @@ public class RegistrationApi {
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/register", produces = "application/json")
-    public ResponseEntity<RegisterUserResponse> postTransaction(RegisterUserRequest registerUserRequest) {
+    public ResponseEntity<RegisterUserResponse> postTransaction(@RequestBody RegisterUserRequest registerUserRequest) {
         return registrationApiService.registerUser(registerUserRequest);
     }
 }
