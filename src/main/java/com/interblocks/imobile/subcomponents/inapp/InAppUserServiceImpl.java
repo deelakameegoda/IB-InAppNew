@@ -218,7 +218,8 @@ public class InAppUserServiceImpl implements InAppUserService {
 
             ExtrnlUserRequest2 walluserdeails = new ExtrnlUserRequest2();
 
-            walluserdeails.setEmail(customerProfileEditRequest.getEmail());
+            walluserdeails.setBankCode(existingUserLinkData.getBnkDlUsrPK().getBnkCode());
+            walluserdeails.setUserId(existingUserLinkData.getBnkDlUsrPK().getUsrId());
             walluserdeails.setFirstName(customerProfileEditRequest.getFirstName());
             walluserdeails.setLastName(customerProfileEditRequest.getLastName());
             walluserdeails.setMiddleName(customerProfileEditRequest.getMiddleName());
@@ -226,12 +227,11 @@ public class InAppUserServiceImpl implements InAppUserService {
             walluserdeails.setAddressLine2(customerProfileEditRequest.getAddressLine2());
             walluserdeails.setAddressLine3(customerProfileEditRequest.getAddressLine3());
             walluserdeails.setAddressLine4(customerProfileEditRequest.getAddressLine4());
+            walluserdeails.setEmail(customerProfileEditRequest.getEmail());
+            walluserdeails.setSelectedCountryId(customerProfileEditRequest.getCountryCode());
+
             walluserdeails.setMobilePhoneNo(customerProfileEditRequest.getMobileNo());
             walluserdeails.setNICNumber(customerProfileEditRequest.getNic());
-            walluserdeails.setSelectedCountryId(customerProfileEditRequest.getCountryCode());
-            walluserdeails.setBankCode(existingUserLinkData.getBnkDlUsrPK().getBnkCode());
-            walluserdeails.setUserId(existingUserLinkData.getBnkDlUsrPK().getUsrId());
-            walluserdeails.setCardNo(defaultCardNo);
             walluserdeails.setMerchantId(customerProfileEditRequest.getMerchantId());
 
             log.info("iAdmin service method extrnlUserUpdate called.");

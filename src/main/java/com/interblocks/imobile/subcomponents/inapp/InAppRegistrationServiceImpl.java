@@ -9,10 +9,8 @@ import com.interblocks.iwallet.adaptor.rest.admin.model.UserCommonResAdmin;
 import com.interblocks.iwallet.model.BnkDlUsr;
 import com.interblocks.iwallet.model.BnkDlUsrPK;
 import com.interblocks.iwallet.repository.UserLinkRepository;
-import com.interblocks.iwallet.util.DateTimeUtil;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -26,10 +24,6 @@ public class InAppRegistrationServiceImpl implements InAppRegistrationService {
     private UserLinkRepository userLinkDao;
     @Autowired
     private IAdminRestClientInapp iAdminRestClientInapp;
-
-    @Value("${inapp.otp_expiry_min}")
-    private Integer otpExpiryMinutes;
-
 
     @Override
     public RegisterUserResponse postInsertExternalWalletUser(RegisterUserRequest oNewWalletUser) {
@@ -56,9 +50,8 @@ public class InAppRegistrationServiceImpl implements InAppRegistrationService {
 
                 ExtrnlUserRequest2 walluserdeails = new ExtrnlUserRequest2();
 
-                Date OTPExpTime = DateTimeUtil.addMinutes(new Date(), otpExpiryMinutes);
-
-                walluserdeails.setEmail(oNewWalletUser.getEmail());
+                walluserdeails.setBankCode(oNewWalletUser.getBankCode());
+                walluserdeails.setUserId(oNewWalletUser.getUserId());
                 walluserdeails.setFirstName(oNewWalletUser.getFirstName());
                 walluserdeails.setLastName(oNewWalletUser.getLastName());
                 walluserdeails.setMiddleName(oNewWalletUser.getMiddleName());
@@ -66,11 +59,11 @@ public class InAppRegistrationServiceImpl implements InAppRegistrationService {
                 walluserdeails.setAddressLine2(oNewWalletUser.getAddressLine2());
                 walluserdeails.setAddressLine3(oNewWalletUser.getAddressLine3());
                 walluserdeails.setAddressLine4(oNewWalletUser.getAddressLine4());
-                walluserdeails.setBankCode(oNewWalletUser.getBankCode());
+                walluserdeails.setEmail(oNewWalletUser.getEmail());
+                walluserdeails.setSelectedCountryId(oNewWalletUser.getCountryId());
+
                 walluserdeails.setMobilePhoneNo(oNewWalletUser.getMobilePhoneNo());
                 walluserdeails.setNICNumber(oNewWalletUser.getNicNumber());
-                walluserdeails.setSelectedCountryId(oNewWalletUser.getCountryId());
-                walluserdeails.setUserId(oNewWalletUser.getUserId());
                 walluserdeails.setMerchantId(oNewWalletUser.getMerchantId());
 
                 log.info("iAdmin method extrnlUserRequest is called");
@@ -102,8 +95,6 @@ public class InAppRegistrationServiceImpl implements InAppRegistrationService {
                         user.setBnkDlUsrPK(userLinkPK);
 
                         log.info("Saving externel user started");
-
-
                         try {
                             userLinkDao.save(user);
                         } catch (Exception e) {
@@ -115,58 +106,6 @@ public class InAppRegistrationServiceImpl implements InAppRegistrationService {
 
                             return regUserResp;
                         }
-
-
-                        // if (result == 0) {
-
-
-                        //} else {
-
-
-                        //Commented storing new cards
-                            /*
-
-                            log.info("Saving externel user success");
-
-                            if ((respUser.getCardNumber() == null || respUser.getCardNumber().isEmpty()) || (respUser.getCardType() == null || respUser.getCardType().isEmpty())) {
-
-                                log.error("Card cannot be attached to the user. Received Card No is : " + respUser.getCardNumber() + " and Card Type is " + respUser.getCardType() + ".");
-                                regUserResp.setStatusDescription("Card cannot be attached to the user. Received Card No is : " + respUser.getCardNumber() + " and Card Type is " + respUser.getCardType() + ".");
-                                regUserResp.setStatusCode("02");
-                                regUserResp.setException("Card cannot be attached to the user. Received Card No is : " + respUser.getCardNumber() + " and Card Type is " + respUser.getCardType() + ".");
-                                regUserResp.setFailReason("Card cannot be attached to the user. Received Card No is : " + respUser.getCardNumber() + " and Card Type is " + respUser.getCardType() + ".");
-
-                                return regUserResp;
-                            }
-
-                            log.info("Saving initial card for the user started");
-
-                            now = new Date();
-                            String cardRefNo = UUID.randomUUID().toString();
-
-                            int cardInsertResp = objCardManagementBo.insertCardToRetailUser("IBNK", respUser.getCardNumber(), "1",
-                                    respUser.getCardType(), Integer.toString(respUser.getUserSrl()), now, DateTimeUtil.addYears(now, 250), "0", "0",
-                                    "System", now, "System", now, respUser.getUserID(), oNewWalletUser.getBankCode(),
-                                    false, respUser.getNameOnCard(), respUser.getExpMonth(), respUser.getExpYear(), false, OTPExpTime,
-                                    respUser.getMaskCardNumber(), 0, "", cardRefNo, true, respUser.getMaskCardNumber().substring(0, 5));
-
-                            if (cardInsertResp == 0) {
-
-                                log.info("Saving initial card for the user failed");
-
-                                regUserResp.setStatusDescription("Card cannot be attached to the user.");
-                                regUserResp.setStatusCode("02");
-                                regUserResp.setStatusDescription("SYS_ERROR");
-                                regUserResp.setFailReason("Card cannot be attached to the user.");
-
-                                return regUserResp;
-                            }
-
-                            log.info("Saving initial card for the user success");
-
-                            */
-                        // }
-
                         regUserResp.setStatusDescription(respUser.getDescription());
                         regUserResp.setEmail(oNewWalletUser.getEmail());
                         regUserResp.setFailReason("");
@@ -216,9 +155,6 @@ public class InAppRegistrationServiceImpl implements InAppRegistrationService {
             regUserResp.setFailReason(e.getMessage());
 
             return regUserResp;
-
         }
     }
-
-
 }

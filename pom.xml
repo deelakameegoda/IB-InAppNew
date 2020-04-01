@@ -5,7 +5,7 @@
 	<parent>
 		<artifactId>iwallet</artifactId>
 		<groupId>com.interblocks.iwallet</groupId>
-		<version>1.0.41-SNAPSHOT</version>
+		<version>1.0.43</version>
 	</parent>
 
 	<properties>
